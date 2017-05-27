@@ -1,0 +1,51 @@
+//
+//  PrefixHeader.pch
+//  UISearchControllerDemo
+//
+//  Created by Jacob on 2017/5/27.
+//  Copyright © 2017年 Jacob. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#ifdef __OBJC__
+
+#import "EXTScope.h"
+
+#endif
+
+//Color
+#define RGBA(R/*red*/, G/*green*/, B/*blue*/, A/*alpha*/) \
+[UIColor colorWithRed:R/255.f green:G/255.f blue:B/255.f alpha:A]
+
+//Screen
+#define JAScreenW [UIScreen mainScreen].bounds.size.width
+#define JAScreenH [UIScreen mainScreen].bounds.size.height
+#define JANavBarH (64)
+
+//DEBUG
+#if DEBUG
+#define NSLog(format, ...) do {                                                                             \
+                                fprintf(stderr, "<%s : %d> %s\n",                                           \
+                                [[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String],  \
+                                __LINE__, __func__);                                                        \
+                                (NSLog)((format), ##__VA_ARGS__);                                           \
+                                fprintf(stderr, "\n\n\n");                                                  \
+                            } while (0)
+
+#define NSLogRect(rect) NSLog(@"%@", NSStringFromCGRect(rect))
+
+#else
+
+#define NSLog(FORMAT, ...) nil
+
+#define NSLogRect(rect) nil
+
+#endif
+
+
+#endif /* PrefixHeader_pch */
